@@ -1,0 +1,7 @@
+.movie-card {
+    transition: 0.4s;
+}
+
+.movie-card:hover {
+    opacity: 0.8;
+}

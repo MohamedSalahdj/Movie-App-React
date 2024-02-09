@@ -1,0 +1,12 @@
+.form-edit:active {
+    outline: none;
+    background-color: none;
+}
+
+.form-edit:focus {
+    outline: none;
+    /* background-color: transparent; */
+    border: none;
+    box-shadow: none;
+
+}
