@@ -4,18 +4,15 @@ import { Link } from "react-router-dom"
 import MovieCardFunction from "../../Components/MovieCardFunction";
 import './ListMovie.css'
 import { useSelector, useDispatch } from "react-redux";
-import {addToFav} from "../../Store/Actions/AddToFavourit"
-import {deleteFromFav} from "../../Store/Actions/DeleteFromFavourit"
+import { changeFavorites } from '../Store/Actions/CounterAction'
 
 function ListMoviesfunction() {
 
     const [allMoviesData, setAllMoviesData] = useState([])
     const [pageNumber, setPageNumber] = useState(1)
     const [totalPageNumbers, settotalPageNumbers] = useState(1)
-
-    const allMovieslist = useSelector((state) => state.moviesFavouritList)
-
-    console.log(allMovieslist)
+    const favCounter = useSelector((state) => state.counter);
+    const getMoviesId = useSelector((state) => state.moviesId)
 
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -44,14 +41,22 @@ function ListMoviesfunction() {
 
     }
 
-    const addToFavourit = (movieId) => {
-        dispatch(addToFav(movieId))
+    const addToFavourit = (e) => {
+        console.log("Target element:", e.target);
+        console.log("Parent element:", e.target.parentElement);
+    console.log("Grandparent element:", e.target.parentElement.parentElement);
+        const singleMovieId = e.target.parentElement.id;
+        console.log(singleMovieId)
+        const addmovie = getMoviesId;
+        if (addmovie.includes(singleMovieId)) {
+            const updateProducts = getMoviesId.filter((movieID) => movieID !== singleMovieId);
+            dispatch(changeFavorites(favCounter - 1, updateProducts));
+        } else {
+            addmovie.push(singleMovieId);
+            dispatch(changeFavorites(favCounter + 1, addmovie));
+        }
     }
-    const deleteFromFavourit = (movieId) => {
-
-        
-    }
-
+   
 
     return (
         <>
@@ -60,12 +65,11 @@ function ListMoviesfunction() {
                 <div className="row d-flex mx-lg-0 mx-md-2 mx-sm-0 ">
                         { allMoviesData.map((movie, index) => {
                             return(
-                                <div className="col-lg-2 col-md-4 col-sm-6">
+                                <div className="col-lg-2 col-md-4 col-sm-6" id={movie.id}>
                                     <Link to={`/moviedetail/${movie.id}`}>              
-                                        <MovieCardFunction  key={index} image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} movieTitle={movie.original_language} movieOverview={movie.overview}/>
+                                        <MovieCardFunction movieId={movie.id} key={index} image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} movieTitle={movie.original_language} movieOverview={movie.overview}/>
                                     </Link>
-                                    <button onClick={()=> addToFavourit(movie.id)} className='btn btn-warning my-2 text-decoration-none d-flex'>Add To Favourit</button>
-                                    <button onClick={()=> deleteFromFavourit(movie.id)} className='btn btn-danger my-2 text-decoration-none d-flex'>Remove from fav</button>
+                                    <button onClick={(e)=> addToFavourit(e)} className='btn btn-warning my-2 text-decoration-none d-flex'>Add To Favourit</button>
 
                                 </div> 
 

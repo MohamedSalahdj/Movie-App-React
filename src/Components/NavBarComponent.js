@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux";
 
 
 function NavBarComponent() {
-
+    const favCounter = useSelector((state) => state.counter);
+    console.log('counter',favCounter)
     const [searchQuery, setSearchQuery] = useState('')
 
     const handelSearch = (e) => {
@@ -27,9 +29,14 @@ function NavBarComponent() {
                 <li className="nav-item">
                     <Link className="nav-link active text-warning" aria-current="page" to="/">Home</Link>
                 </li>
-                <li className="nav-item">
-                    <Link className="nav-link active text-warning" aria-current="page" to="/moviefavourit">Favourit</Link>
-                </li>
+                <Link type="button" to='/moviefavorit' class="nav-link active text-warning position-relative">
+                    Favorit
+                    <span class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-warning text-bl">
+                        {favCounter}
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </Link>
+
              </ul>
              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                  <li className="nav-item">
