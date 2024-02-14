@@ -5,3 +5,23 @@
 .movie-card:hover {
     opacity: 0.8;
 }
+
+.parent-card {
+    position: relative;
+}
+.btn-favv {
+    position: absolute;
+    bottom: 10px;
+    left: 25%;
+}
+
+.top-heart {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: black;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    z-index: 1;
+}

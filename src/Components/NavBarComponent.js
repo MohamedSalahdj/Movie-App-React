@@ -27,7 +27,7 @@ function NavBarComponent() {
         <div className="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                    <Link className="nav-link active text-warning" aria-current="page" to="/">Home</Link>
+                    <Link className="nav-link active text-warning" aria-current="page" to="/movies">Home</Link>
                 </li>
                 <Link type="button" to='/moviefavorit' class="nav-link active text-warning position-relative">
                     Favorit
@@ -38,15 +38,19 @@ function NavBarComponent() {
                 </Link>
 
              </ul>
-             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+             {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                  <li className="nav-item">
                     <Link to='/login' className="nav-link active text-warning" aria-current="page" href="#">Login</Link>
                 </li>
                 <li className="nav-item">
                     <Link to='/register' className="nav-link active text-warning" aria-current="page" href="#">Register</Link>
                 </li>
-             </ul>
+             </ul> */}
                 <form className="d-flex" role="search">
+                <select className="form-select me-3 w-25" aria-label="Default select example">
+                    <option selected value="EN">EN</option>
+                    <option value="AR">AR</option>
+                </select>
                     <input className="form-control me-2" type="search" placeholder="Movie Search" aria-label="Search" 
                         onChange={(e)=> handelSearch(e)} value={searchQuery}
                     />

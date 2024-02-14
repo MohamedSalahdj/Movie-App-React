@@ -65,25 +65,25 @@ function ListMoviesfunction() {
                 <div className="row d-flex mx-lg-0 mx-md-2 mx-sm-0 ">
                         { allMoviesData.map((movie, index) => {
                             return(
-                                <div className="col-lg-2 col-md-4 col-sm-6" id={movie.id}>
+                                <div className="col-lg-2 col-md-4 col-sm-6 parent-card" id={movie.id}>
+                                    
+                                    <p className={`fas fa-heart top-heart ${getMoviesId.includes(`${movie.id}`) && 'text-warning bg-black' }}`}></p>
                                     <Link to={`/moviedetail/${movie.id}`}>              
                                         <MovieCardFunction movieId={movie.id} key={index} image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} movieTitle={movie.original_language} movieOverview={movie.overview}/>
                                     </Link>
-                                    <button onClick={(e)=> addToFavourit(e)} className='btn btn-warning my-2 text-decoration-none d-flex'>Add To Favourit</button>
-
+                                    <button onClick={(e)=> addToFavourit(e)} className='btn btn-warning my-2 text-decoration-none d-flex btn-favv'>Add To Favourit</button>
                                 </div> 
-
-
                             )
                         })}
 
-        <nav aria-label="Page navigation example mt-5 ">
+        <nav aria-label="Page navigation example mt-5  ">
             <ul class="pagination d-flex justify-content-center ">
-                {pageNumber!=1 && <li className="page-item"><button onClick={()=> previousPage(pageNumber)} className='page-link'>Previous</button></li>}
+                {pageNumber!=1 ? <li className="page-item"><button onClick={()=> previousPage(pageNumber)} className='page-link bg-warning text-black'>Previous</button></li>
+                :<li className="page-item"><button onClick={()=> previousPage(pageNumber)} className='page-link bg-black text-light disabled'>Previous</button></li>}
                 {/* {pageNumber!=1 && <li className="page-item"><button onClick={()=> previousPage(pageNumber)} className='page-link'>1</button></li>}
                 {pageNumber!=1 && <li className="page-item"><button onClick={()=> previousPage(pageNumber)} className='page-link'>2</button></li>}
                 {pageNumber!=1 && <li className="page-item"><button onClick={()=> previousPage(pageNumber)} className='page-link'>3</button></li>} */}
-                {pageNumber < 42376 && <li className="page-item"> <button onClick={()=> nextPage(pageNumber)} className='page-link'>Next</button></li>}
+                {pageNumber < 42376 && <li className="page-item"> <button onClick={()=> nextPage(pageNumber)} className='page-link bg-warning text-black'>Next</button></li>}
             </ul>
             </nav>
                 </div>
