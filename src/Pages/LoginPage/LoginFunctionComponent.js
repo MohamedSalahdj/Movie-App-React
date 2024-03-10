@@ -83,12 +83,12 @@ function LoginFunctionComponent() {
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                     <div className="d-flex form-control">
                     <input type={passwordType} className="form-control border-0 form-edit" 
-                        id="exampleInputPassword" name="password" 
+                        id="exampleInputPassword" name="password" data-testid="test-pass"
                         onChange={(e)=> changeUserDate(e)} 
                     
                     />
                      <button type="button" className="btn" onClick={() => togglePasswordVisibility()}>
-                        <i class="bi bi-eye-slash" id="togglePassword"></i>
+                        <i class="bi bi-eye-slash" id="togglePassword" data-testid="test-icon"></i>
                      </button>
                     </div>
                    
